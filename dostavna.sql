@@ -4,16 +4,16 @@ use dostavna;
 
 create table kupac(
     kupac_id int not null primary key auto_increment,
-    ime varchar(50),
-    prezime varchar(50),
-    ulica varchar(50),
-    grad varchar(50),
-    postanskibroj nvarchar(50),
+    ime varchar(50) not null,
+    prezime varchar(50) not null,
+    ulica varchar(50) not null,
+    grad varchar(50) not null,
+    postanskibroj nvarchar(50) not null,
     drzava varchar(10),
-    brojtelefona varchar(15),
+    brojtelefona varchar(15) not null,
     iban varchar(20),
     OIB char(11),
-    email varchar(20)
+    email varchar(20) not null
 );
 
 create table narudzba(
@@ -26,15 +26,14 @@ create table narudzba(
     postanskibroj nvarchar(50),
     datumnarudzbe datetime,
     datumisporuke datetime,
-    nacinplacanja varchar(10),
-    kolicina nvarchar(3)
+    nacinplacanja varchar(10)
 );
 
 create table proizvod(
     proizvod_id int not null primary key auto_increment,
     naziv varchar(50),
-    cijena decimal(10.2),
-    tip varchar(50)
+    cijena decimal(10,2),
+    tip varchar(15)
 );
 
 create table detaljinarudzbe(
@@ -58,7 +57,6 @@ alter table detaljinarudzbe add foreign key (narudzba_id) references narudzba(na
 alter table detaljinarudzbe add foreign key (proizvod_id) references proizvod(proizvod_id);
 alter table narudzba add foreign key (kupac_id) references kupac(kupac_id);
 alter table narudzba add foreign key (zaposlenik_id) references zaposlenik(zaposlenik_id);
-
 
 
 
